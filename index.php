@@ -1,8 +1,7 @@
 <?php
- // this would destroy the session variables on each reload
-session_start();
-session_destroy();
-
+    // this would destroy the session variables on each reload
+   session_start();
+   session_destroy();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -28,39 +27,39 @@ session_destroy();
                 Form Steps
             </div>
             <div id="edit_step_box">
-                <table width="100%" cellspacing="0" cellpadding="0" border="0" style="font-size: 11px;" id="stepTable">
-                  <tr class="stepSelected">
-                    <td class="formStep">Name</td>
-                    <td class="stepEdit"><span id="formstep1" class="pointer placeEdit">Edit</span> </td>
-                    </tr><tr >
-                    <td class="formStep">Address</td>
-                    <td class="stepEdit"><span id="formstep2" class="pointer placeEdit">Edit</span> </td>
-                    </tr><tr >
-                    <td class="formStep">Interests:</td>
-                    <td class="stepEdit"><span id="formstep3" class="pointer placeEdit">Edit</span></td>
-                    </tr>
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" style="font-size: 11px;" id="stepTable">
+              <tr class="stepSelected">
+                <td class="formStep">Name</td>
+                <td class="stepEdit"><span id="formstep1" class="pointer placeEdit">Edit</span> </td>
+                </tr><tr >
+                <td class="formStep">Address</td>
+                <td class="stepEdit"><span id="formstep2" class="pointer placeEdit">Edit</span> </td>
+                </tr><tr >
+                <td class="formStep">Interests:</td>
+                <td class="stepEdit"><span id="formstep3" class="pointer placeEdit">Edit</span></td>
+                </tr>
 
-                </table>
-            </div>
+            </table>
         </div>
-        <div class="right_block_box">
-            <div class="right_block_title" id="formTitle">
-                Form 1
-            </div>
-            <div class="multiform_part">
-                Aqui va la forma
-            </div>
-            <div id="form_step_nav_wrap">
-                <div id="form_step_nav">
-                    <div id="form_step_left">
-                        <input type="button" value="Previous Step" id="prevStepBtn">
-                    </div>
-                    <div id="form_step_right">
-                        <input type="button" value="Next Step" id="nextStepBtn" >
-                        <input type="button" value="Preview Data" style="display: none" id="previewBtn" >
-                    </div>
+    </div>
+    <div class="right_block_box">
+        <div class="right_block_title" id="formTitle">
+            Form 1
+        </div>
+        <div class="multiform_part">
+            Aqui va la forma
+        </div>
+        <div id="form_step_nav_wrap">
+            <div id="form_step_nav">
+                <div id="form_step_left">
+                    <input type="button" value="Previous Step" id="prevStepBtn">
+                </div>
+                <div id="form_step_right">
+                    <input type="button" value="Next Step" id="nextStepBtn" >
+                    <input type="button" value="Preview Data" style="display: none" id="previewBtn" >
                 </div>
             </div>
         </div>
+    </div>
 </body>
 </html>
