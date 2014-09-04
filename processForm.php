@@ -1,12 +1,16 @@
 <?php
+include_once('templates_helper.php');
+include_once('config/config.dev.php');
+include_once('mysql/class.MySQL.php');
+$oMySQL = new MySQL(MYSQL_DATABASE_NAME, MYSQL_USER, MYSQL_PASS,MYSQL_HOST,MYSQL_PORT);
 session_start();
 
 $step = $_REQUEST['step'];
 $formData = $_REQUEST['formData'];
+//var_dump($formData);exit;
 
-
-function save($step, $data) {
-	//$_SESSION[$step] = $data;
+function save($step, $data)
+{
 	$fields = explode('&',$data);
 	foreach ($fields as $field) {
 		$keyVal = explode('=', $field);
@@ -16,7 +20,8 @@ function save($step, $data) {
 	}
 }
 
-if ($formData) {
+if ($formData)
+{
 	$formStep = $_REQUEST['saveData'];
 	save($formStep, $_REQUEST['formData']);
 }
@@ -24,81 +29,60 @@ if ($formData) {
 if ($step) {
 	switch ($step) {
 		case 'formstep1':
-			$html = <<<FORM
-			<form id="form_{$step}" name="form_{$step}">
-			<fieldset>
-    <legend>Personal information</legend>
-    <div class="fm-req">
-      <label for="fm-firstname">First name:</label>
-      <input name="fm-firstname" id="fm-firstname" type="text" value="{$_SESSION[$step]['fm-firstname']}"/>
-    </div>
-    <div class="fm-opt">
-
-      <label for="fm-middlename">Middle name:</label>
-      <input id="fm-middlename" name="fm-middlename" type="text" value="{$_SESSION[$step]['fm-middlename']}"/>
-    </div>
-    <div class="fm-req">
-      <label for="fm-lastname">Last name:</label>
-      <input name="fm-lastname" id="fm-lastname" type="text" value="{$_SESSION[$step]['fm-lastname']}"/>
-    </div>
-    </fieldset>
-	</fieldset>
-	</form>
-FORM;
-		echo $html;
+            $checkedm = $_SESSION[$step]['fm-sex']=='male'?'checked':'';
+            $checkedf = $_SESSION[$step]['fm-sex']=='female'?'checked':'';
+            echo _tpl_('formstep1.php',array(
+                        'step'=>$step,
+                        'firstname'=>$_SESSION[$step]['fm-firstname'],
+                        'checkedm'=>$checkedm,
+                        'checkedf'=>$checkedf
+                    )
+                );
 		break;
 		case 'formstep2':
-			$html = <<<FORM
-			<form id="form_{$step}" name="form_{$step}">
-<fieldset>
-<legend>Address </legend>
-    <div class="fm-opt">
-      <label for="fm-addr">Address:</label>
-      <input id="fm-addr" name="fm-addr" type="text" value="{$_SESSION[$step]['fm-addr']}"/>
-    </div>
-    <div class="fm-opt">
-      <label for="fm-city">City or Town:</label>
-
-      <input id="fm-city" name="fm-city" type="text" value="{$_SESSION[$step]['fm-city']}"/>
-    </div>
-    <div class="fm-opt">
-      <label for="fm-state">State:</label>
-      <input id="fm-state" name="fm-state" type="text" value="{$_SESSION[$step]['fm-state']}"/>
-    </div>
-    <div class="fm-req">
-      <label for="fm-zipcode">Zip code:</label>
-      <input id="fm-zipcode" name="fm-zipcode" type="text" value="{$_SESSION[$step]['fm-zipcode']}"/>
-    </div>
-    </fieldset>
-</form>
-
-FORM;
-		echo $html;
-		break;
+            echo _tpl_('formstep2.php',array(
+                    'step'=>$step,
+                    'voievodeship'=>$_SESSION[$step]['fm-voievodeship'],
+                    'optionselect'=>$_SESSION[$step]['fm-date'],
+                )
+            );
+            break;
 		case 'formstep3':
-			$html = <<<FORM
-			<form id="form_{$step}" name="form_{$step}">
-<fieldset>
-<legend>Interests </legend>
-    <div class="fm-opt">
-      <label for="fm-int1">Interest 1:</label>
-      <input id="fm-int1" name="fm-int1" type="text" value="{$_SESSION[$step]['fm-int1']}"/>
-    </div>
-    <div class="fm-opt">
-      <label for="fm-int2">Interest 2:</label>
-
-      <input id="fm-int2" name="fm-int2" type="text" value="{$_SESSION[$step]['fm-int2']}"/>
-    </div>
-    </fieldset>
-</form>
-
-FORM;
-		echo $html;
+            echo _tpl_('formstep3.php',array(
+                    'step'=>$step,
+                    'email'=>$_SESSION[$step]['fm-email'],
+                    'checkbox'=>$_SESSION[$step]['fm-checkbox']?'checked':'',
+                )
+            );
 		break;
 		case 'getAllData':
+            $dataSessionForm = $_SESSION;
+//            Sex,Name,BDate,Voievodeship,email,checkbox
+            foreach($dataSessionForm as $k=>$value)
+            {
+                switch ($k)
+                {
+                    case '':
+                        $dataInsert['Sex'] = $value['fm-sex'];
+                        $dataTypes['sex'] = 'bool';
+                        break;
+                    case '':
+                        $dataInsert['Name'] = $value['fm-firstname'];
+                        $dataTypes['Name'] = 'str';
+                    break;
+                    case '':
+                        $dataInsert['Sex'] = $value['fm-sex'];
+                        $dataTypes[] = 'int';
+                    break;
+                    default:
+
+                }
+
+            }
+            $oMySQL->insert('horoskop',$dataInsert,'',$dataTypes);
 			echo '<h3>Saved Data</h3>';
 			echo '<div style="text-align: left;"><pre>';
-			print_r($_SESSION);
+			print_r($dataSessionForm);
 			echo '</pre></div>';
 		break;
 	}

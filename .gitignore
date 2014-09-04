@@ -1,2 +1,4 @@
 nbproject/
 .idea/
+config/config.dev.php
+config/config.prod.php

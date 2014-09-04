@@ -15,10 +15,10 @@ $(function() {
             //if we are on last step hide nextstep button
             if (last == thisStep) {
                 $("#nextStepBtn").hide();
-                $("#previewBtn").show();
+                $("#saveBtn").show();
             } else {
                 $("#nextStepBtn").show();
-                $("#previewBtn").hide();
+                $("#saveBtn").hide();
             }   
 			//get current form data to be passed later
 			var curr = $(".stepSelected").children(':eq(1)').children().attr('id');
@@ -64,7 +64,7 @@ $(function() {
 	});
 
 
-	$("#previewBtn").click(function(e){
+	$("#saveBtn").click(function(e){
 		e.preventDefault();
 		$(this).hide();
 		$("#prevStepBtn").hide();
@@ -76,6 +76,12 @@ $(function() {
 				$(".multiform_part").html(data);
 		});
 	});
+
+    var option = $("#selectbox").getAttribute('class');
+    if(option)
+    {
+
+    }
 	//default form to show
 	selectStep($("#formstep1").parent());
 
