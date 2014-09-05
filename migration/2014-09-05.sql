@@ -1,0 +1,1 @@
+ALTER TABLE `horoskop` CHANGE `BDate` `BDate` VARCHAR( 255 ) NOT NULL 

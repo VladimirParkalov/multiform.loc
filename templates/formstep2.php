@@ -10,18 +10,9 @@
             <label>Birth Date:</label>
             <select name='fm-date' id = 'fm-date'>
                 <option  value=""></option>
-                <option value="aries">Aries: March 21 – April 20</option>
-                <option value="taurus">Taurus: April 21 – May 20</option>
-                <option value="gemini">Gemini: May 21 – June 20</option>
-                <option value="cancer">Cancer: June 21 – July 20</option>
-                <option value="leo">Leo: July 21  – August 20</option>
-                <option value="virgo">Virgo: August 21 – September 20</option>
-                <option value="libra">Libra: September 21 – October 20</option>
-                <option value="scorpio">Scorpio: October 21 – November 20</option>
-                <option value="sagittarius">Sagittarius: November 21 – December 20</option>
-                <option value="capricorn">Capricorn: December 21 – January 20</option>
-                <option value="aquarius">Aquarius: January 21 – February 20</option>
-                <option value="pisces">Pisces: February 21 – March 20</option>
+                <?php foreach($options as $k=>$v){ ?>
+                    <option <?php if($selected==$k) echo "selected"; ?> value="<?php echo $k; ?>"><?php echo $v; ?></option>
+                <?php }?>
             </select>
         </div>
     </fieldset>

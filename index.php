@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="css/style.css" type="text/css" />
     <link rel="stylesheet" href="css/form.css" type="text/css" />
     <title>Multi form Demo</title>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<!--        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>-->
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/multiform.js"></script>
     </head>
     <body>
@@ -20,7 +21,7 @@
                 User data is saved in a session, everytime a new form is selected either
                 via the Next/Previous buttons or by clicking on the Edit link for each form.
                 <br/><br/>
-                To clear session just reload this page.
+                To clear session just reload this page, or save button.
                 <br/><br/>
             </div>
             <div class="left_block_box">

@@ -77,11 +77,6 @@ $(function() {
 		});
 	});
 
-    var option = $("#selectbox").getAttribute('class');
-    if(option)
-    {
-
-    }
 	//default form to show
 	selectStep($("#formstep1").parent());
 

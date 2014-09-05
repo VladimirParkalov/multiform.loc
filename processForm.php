@@ -1,6 +1,6 @@
 <?php
 include_once('templates_helper.php');
-include_once('config/config.dev.php');
+include_once('config/config.php');
 include_once('mysql/class.MySQL.php');
 $oMySQL = new MySQL(MYSQL_DATABASE_NAME, MYSQL_USER, MYSQL_PASS,MYSQL_HOST,MYSQL_PORT);
 session_start();
@@ -40,10 +40,25 @@ if ($step) {
                 );
 		break;
 		case 'formstep2':
+            $options = array(
+                'aries'=>'Aries: March 21 – April 20',
+                'taurus'=>'Taurus: April 21 – May 20',
+                'gemini'=>'Gemini: May 21 – June 20',
+                'cancer'=>'Cancer: June 21 – July 20',
+                'leo'=>'Leo: July 21 – August 20',
+                'virgo'=>'Virgo: August 21 – September 20',
+                'libra'=>'Libra: September 21 – October 20',
+                'scorpio'=>'Scorpio: October 21 – November 20',
+                'sagittarius'=>'Sagittarius: November 21 – December 20',
+                'capricorn'=>'Capricorn: December 21 – January 20',
+                'aquarius'=>'Aquarius: January 21 – February 20',
+                'pisces'=>'Pisces: February 21 – March 20'
+            );
             echo _tpl_('formstep2.php',array(
                     'step'=>$step,
                     'voievodeship'=>$_SESSION[$step]['fm-voievodeship'],
-                    'optionselect'=>$_SESSION[$step]['fm-date'],
+                    'selected'=>$_SESSION[$step]['fm-date'],
+                    'options'=>$options,
                 )
             );
             break;
@@ -60,30 +75,53 @@ if ($step) {
 //            Sex,Name,BDate,Voievodeship,email,checkbox
             foreach($dataSessionForm as $k=>$value)
             {
+
                 switch ($k)
                 {
-                    case '':
+                    case 'formstep1':
                         $dataInsert['Sex'] = $value['fm-sex'];
-                        $dataTypes['sex'] = 'bool';
-                        break;
-                    case '':
+                        $dataTypes['Sex'] = 'str';
                         $dataInsert['Name'] = $value['fm-firstname'];
                         $dataTypes['Name'] = 'str';
+                        break;
+                    case 'formstep2':
+                        $dataInsert['BDate'] = $value['fm-date'];
+                        $dataTypes['BDate'] = 'str';
+                        $dataInsert['Voievodeship'] = $value['fm-voievodeship'];
+                        $dataTypes['Voievodeship'] = 'str';
+
                     break;
-                    case '':
-                        $dataInsert['Sex'] = $value['fm-sex'];
-                        $dataTypes[] = 'int';
+                    case 'formstep3':
+                        $dataInsert['email'] = $value['fm-email'];
+                        $dataTypes['email'] = 'email';
+                        $dataInsert['checkbox'] = $value['fm-checkbox']=='on'?1:0;
+                        $dataTypes['checkbox'] = 'bool';
                     break;
                     default:
 
                 }
 
             }
-            $oMySQL->insert('horoskop',$dataInsert,'',$dataTypes);
-			echo '<h3>Saved Data</h3>';
-			echo '<div style="text-align: left;"><pre>';
-			print_r($dataSessionForm);
-			echo '</pre></div>';
+            echo '<div style="text-align: left;"><pre>';
+//            print_r($dataInsert);
+//            print_r($oMySQL);
+            echo '</pre></div>';
+            if($oMySQL->insert('horoskop',$dataInsert,'',$dataTypes))
+            {
+                $oMySQL->closeConnection();
+                session_destroy();
+                echo '<h3>Data Saved </h3>';
+                echo '<h3>redirect to '.$dataInsert['BDate'].' </h3>';
+            }
+            else
+            {
+                echo '<h3>Data not saved </h3>';
+            }
+
+
+//			echo '<div style="text-align: left;"><pre>';
+//			print_r($dataSessionForm);
+//			echo '</pre></div>';
 		break;
 	}
 }

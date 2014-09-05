@@ -76,12 +76,12 @@ class MySQL {
 	// Performs a 'mysql_real_escape_string' on the entire array/string
 	private function SecureData($data, $types){
 		if(is_array($data)){
-            $i = 0;
+//            $i = 0;
 			foreach($data as $key=>$val){
 				if(!is_array($data[$key])){
-                    $data[$key] = $this->CleanData($data[$key], $types[$i]);
+//                    $data[$key] = $this->CleanData($data[$key], $types[$i]);
 					$data[$key] = mysql_real_escape_string($data[$key], $this->databaseLink);
-                    $i++;
+//                    $i++;
 				}
 			}
 		}else{
@@ -193,7 +193,7 @@ class MySQL {
         }
 
         $query = trim($query, ', ');
-
+//var_dump($query);
         return $this->executeSQL($query);
     }
 
