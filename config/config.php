@@ -1,5 +1,5 @@
 <?php
-define('MYSQL_DATABASE_NAME','');
+define('MYSQL_DATABASE_NAME','nahr_5');
 define('MYSQL_USER','');
 define('MYSQL_PASS','');
 define('MYSQL_HOST','localhost');

@@ -8,48 +8,16 @@
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/calendar/jquery.datetimepicker.css" type="text/css" />
     <link rel="stylesheet" href="css/form.css" type="text/css" />
     <title>Multi form Demo</title>
-<!--        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>-->
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/calendar/jquery.datetimepicker.js"></script>
         <script type="text/javascript" src="js/multiform.js"></script>
     </head>
     <body>
-        <div class="main_box">
-            <div style='text-align: left'>The forms are constructed in php,
-                an we make a call with jquery asking for the form that user has selecte,
-                User data is saved in a session, everytime a new form is selected either
-                via the Next/Previous buttons or by clicking on the Edit link for each form.
-                <br/><br/>
-                To clear session just reload this page, or save button.
-                <br/><br/>
-            </div>
-            <div class="left_block_box">
-                <div class="left_block_title">
-                    Form Steps
-                </div>
-                <div id="edit_step_box">
-                <table width="100%" cellspacing="0" cellpadding="0" border="0" style="font-size: 11px;" id="stepTable">
-                  <tr class="stepSelected">
-                    <td class="formStep">Name</td>
-                    <td class="stepEdit"><span id="formstep1" class="pointer placeEdit">Edit</span> </td>
-                    </tr><tr >
-                    <td class="formStep">Voievodeship</td>
-                    <td class="stepEdit"><span id="formstep2" class="pointer placeEdit">Edit</span> </td>
-                    </tr><tr >
-                    <td class="formStep">Mail:</td>
-                    <td class="stepEdit"><span id="formstep3" class="pointer placeEdit">Edit</span></td>
-                    </tr>
-
-                </table>
-            </div>
-        </div>
         <div class="right_block_box">
-            <div class="right_block_title" id="formTitle">
-                Form 1
-            </div>
             <div class="multiform_part">
-                Aqui va la forma
             </div>
             <div id="form_step_nav_wrap">
                 <div id="form_step_nav">
@@ -58,7 +26,6 @@
                     </div>
                     <div id="form_step_right">
                         <input type="button" value="Next Step" id="nextStepBtn" >
-                        <input type="button" value="Save Data" style="display: none" id="saveBtn" >
                     </div>
                 </div>
             </div>

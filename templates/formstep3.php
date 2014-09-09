@@ -1,5 +1,7 @@
-<form id="form_<?=$step?>" name="form_<?=$step?>">
+<form id="formstep3" name="form_formstep3">
     <fieldset>
+        <span id="prevstep" style="display:none;">formstep2</span>
+        <span id="nextstep" style="display:none;">getAllData</span>
         <legend>Email </legend>
         <div class="fm-opt">
             <label for="fm-email">Email field:</label>

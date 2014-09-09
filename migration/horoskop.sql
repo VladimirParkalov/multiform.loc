@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.4
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Host: nahr.nazwa.pl:3307
--- Generation Time: Sep 03, 2014 at 09:20 PM
--- Server version: 5.5.25a-log
--- PHP Version: 5.3.27
+-- Host: localhost
+-- Generation Time: Sep 09, 2014 at 09:30 PM
+-- Server version: 5.5.38-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,11 +26,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `horoskop`
 --
 
-CREATE TABLE `horoskop` (
+CREATE TABLE IF NOT EXISTS `horoskop` (
   `LP` int(11) NOT NULL AUTO_INCREMENT,
   `Sex` varchar(11) NOT NULL,
   `Name` text NOT NULL,
   `BDate` date NOT NULL,
+  `zodiac` varchar(255) NOT NULL,
   `Voievodeship` text NOT NULL,
   `email` text NOT NULL,
   `checkbox` tinyint(1) NOT NULL,

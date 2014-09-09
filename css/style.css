@@ -43,11 +43,11 @@ body{
 
 .right_block_box{
     border:#cfcfcf solid 1px; padding:1px;
-	float: right;
 	width: 620px;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 	padding: 5px;
+    margin: 0px auto;
 } 
 .right_block_title{
     background-color:#206676;
